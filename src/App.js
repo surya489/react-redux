@@ -2,6 +2,7 @@ import React from "react";
 import Counter from "./components/Counter";
 import Todo from "./components/Todo";
 import Cart from "./components/Cart";
+import CSSConcepts from "./components/CSSConcepts";
 
 function App() {
   return (
@@ -23,6 +24,11 @@ function App() {
         <div className="row mt-4">
           <div className="col-12">
             <Cart />
+          </div>
+        </div>
+        <div className="row mt-4">
+          <div className="col-12">
+            <CSSConcepts />
           </div>
         </div>
       </div>
