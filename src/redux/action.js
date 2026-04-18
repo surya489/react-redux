@@ -1,6 +1,20 @@
 // Action creators are functions that return action objects.
 
-import { INCREMENT, DECREMENT, ADD_TODO, TOGGLE_TODO, DELETE_TODO, ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, FETCH_PRODUCTS_REQUEST, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCTS_FAILURE } from "./actionTypes";
+import { 
+    INCREMENT, 
+    DECREMENT, 
+    ADD_TODO, 
+    TOGGLE_TODO, 
+    DELETE_TODO, 
+    ADD_TO_CART, 
+    REMOVE_FROM_CART, 
+    UPDATE_QUANTITY, 
+    FETCH_PRODUCTS_REQUEST, 
+    FETCH_PRODUCTS_SUCCESS, 
+    FETCH_PRODUCTS_FAILURE,
+    LOGIN,
+    LOGOUT
+} from "./actionTypes";
 
 export const increment = () => ({
     type: INCREMENT
@@ -71,3 +85,16 @@ export const fetchProducts = () => {
         }, 1000); // Simulate 1 second delay
     };
 };
+
+export const login = (user) => ({
+    type: LOGIN,
+    payload: {
+        name: user.name,
+        email: user.email,
+        token: user.token
+    }
+});
+
+export const logout = () => ({
+    type: LOGOUT
+});

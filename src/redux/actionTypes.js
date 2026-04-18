@@ -20,3 +20,11 @@ export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
 export const FETCH_PRODUCTS_REQUEST = "FETCH_PRODUCTS_REQUEST";
 export const FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
 export const FETCH_PRODUCTS_FAILURE = "FETCH_PRODUCTS_FAILURE";
+
+// Login & Logout Action Types
+
+// export const LOGIN_REQUEST = "LOGIN_REQUEST";
+// export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+// export const LOGIN_FAILURE = "LOGIN_FAILURE";
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";

@@ -1,6 +1,20 @@
 //Reducers specify how the application's state changes in response to actions. The reducer function receives the current state and action, and returns the updated state.
 
-import { INCREMENT, DECREMENT, ADD_TODO, TOGGLE_TODO, DELETE_TODO, ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, FETCH_PRODUCTS_REQUEST, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCTS_FAILURE } from "./actionTypes";
+import { 
+    INCREMENT, 
+    DECREMENT, 
+    ADD_TODO, 
+    TOGGLE_TODO, 
+    DELETE_TODO, 
+    ADD_TO_CART, 
+    REMOVE_FROM_CART, 
+    UPDATE_QUANTITY, 
+    FETCH_PRODUCTS_REQUEST, 
+    FETCH_PRODUCTS_SUCCESS, 
+    FETCH_PRODUCTS_FAILURE, 
+    LOGIN, 
+    LOGOUT 
+} from "./actionTypes";
 
 const initialState = {
     count: 0,
@@ -8,7 +22,8 @@ const initialState = {
     cart: [],
     products: [],
     loading: false,
-    error: null
+    error: null,
+    user: []
 };
 
 const counterReducer = (state = initialState, action) => {
@@ -85,6 +100,25 @@ const counterReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: action.payload
+            };
+        case LOGIN:
+            return {
+                ...state,
+                user: [
+                    ...state.user,
+                    {
+                        id: Date.now(),
+                        name: action.payload.name,
+                        email: action.payload.email,
+                        token: action.payload.token,
+                        isLoggedIn: true
+                    }
+                ]
+            };
+            case LOGOUT:
+            return {
+                ...state,
+                user: []
             };
         default:
             return state;
