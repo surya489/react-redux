@@ -1,10 +1,11 @@
 //Reducers specify how the application's state changes in response to actions. The reducer function receives the current state and action, and returns the updated state.
 
-import { INCREMENT, DECREMENT, ADD_TODO, TOGGLE_TODO, DELETE_TODO } from "./actionTypes";
+import { INCREMENT, DECREMENT, ADD_TODO, TOGGLE_TODO, DELETE_TODO, ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY } from "./actionTypes";
 
 const initialState = {
     count: 0,
-    todos: []
+    todos: [],
+    cart: []
 };
 
 const counterReducer = (state = initialState, action) => {
@@ -44,6 +45,25 @@ const counterReducer = (state = initialState, action) => {
             return {
                 ...state,
                 todos: state.todos.filter(todo => todo.id !== action.payload.id)
+            };
+        case ADD_TO_CART:
+            return {
+                ...state,
+                cart: [...state.cart, action.payload.item]
+            };
+        case REMOVE_FROM_CART:
+            return {
+                ...state,
+                cart: state.cart.filter(item => item.id !== action.payload.item.id)
+            };
+        case UPDATE_QUANTITY:
+            return {
+                ...state,
+                cart: state.cart.map(item =>
+                    item.id === action.payload.item.id
+                        ? { ...item, quantity: action.payload.quantity }
+                        : item
+                )
             };
         default:
             return state;
