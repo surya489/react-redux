@@ -17,15 +17,10 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    console.log("User state updated:", user);
     if (user && user.length > 0) {
       setIsLoggedIn(true);
     }
   }, [user]);
-
-  useEffect(() => {
-    console.log("color state updated:", color);
-  }, [color]);
 
   const handleThemeToggle = () => {
     const newColor = color === "light" ? "dark" : "light";
