@@ -14,7 +14,10 @@ import {
     FETCH_PRODUCTS_FAILURE, 
     LOGIN, 
     LOGOUT,
-    TOGGLE_THEME
+    TOGGLE_THEME,
+    FETCH_WEATHER_REQUEST,
+    FETCH_WEATHER_SUCCESS,
+    FETCH_WEATHER_FAILURE
 } from "./actionTypes";
 
 const initialState = {
@@ -25,7 +28,8 @@ const initialState = {
     loading: false,
     error: null,
     user: [],
-    color: "light"
+    color: "light",
+    weather: []
 };
 
 const counterReducer = (state = initialState, action) => {
@@ -117,7 +121,7 @@ const counterReducer = (state = initialState, action) => {
                     }
                 ]
             };
-            case LOGOUT:
+        case LOGOUT:
             return {
                 ...state,
                 user: []
@@ -126,6 +130,24 @@ const counterReducer = (state = initialState, action) => {
             return {
                 ...state,
                 color: action.payload.color
+            }
+        case FETCH_PRODUCTS_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: null
+            }
+        case FETCH_PRODUCTS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                weather: action.payload
+            }
+        case FETCH_PRODUCTS_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
             }
         default:
             return state;

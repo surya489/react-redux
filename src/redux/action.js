@@ -14,7 +14,10 @@ import {
     FETCH_PRODUCTS_FAILURE,
     LOGIN,
     LOGOUT,
-    TOGGLE_THEME
+    TOGGLE_THEME,
+    FETCH_WEATHER_REQUEST,
+    FETCH_WEATHER_SUCCESS,
+    FETCH_WEATHER_FAILURE
 } from "./actionTypes";
 
 export const increment = () => ({
@@ -104,3 +107,45 @@ export const toggleTheme = (color) => ({
     type: TOGGLE_THEME,
     payload: { color }
 });
+
+export const fetchWeatherRequest = () => ({
+    type: FETCH_WEATHER_REQUEST
+});
+
+export const fetchWeatherSuccess = (weather) => ({
+    type: FETCH_WEATHER_SUCCESS,
+    payload: weather
+});
+
+export const fetchWeatherFailure = (error) => ({
+    type: FETCH_WEATHER_FAILURE,
+    payload: error
+});
+
+// Fetch weather thunk action
+
+export const fetchWeather = (city) => {
+    return (dispatch) => {
+        dispatch(fetchWeatherRequest());
+        // Simulate API call with setTimeout
+        setTimeout(() => {
+            const weather = () => {
+                if (city.toLowerCase() === "new york") {
+                    return { city: "New York", temperature: 25, condition: "Sunny" };
+                } else if (city.toLowerCase() === "london") {
+                    return { city: "London", temperature: 15, condition: "Cloudy" };
+                } else if (city.toLowerCase() === "tokyo") {
+                    return { city: "Tokyo", temperature: 20, condition: "Rainy" };
+                } else {
+                    return null;
+                }
+            }
+            const result = weather();
+            if (result) {
+                dispatch(fetchWeatherSuccess(result));
+            } else {
+                dispatch(fetchWeatherFailure("City not found"));
+            }
+        }, 1000);
+    }
+}
