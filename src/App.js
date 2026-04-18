@@ -6,10 +6,26 @@ import Cart from "./components/Cart";
 function App() {
   return (
     <div className="App">
-      <h1>React Redux App</h1>
-      <Counter />
-      <Todo />
-      <Cart />
+      <nav className="navbar navbar-dark bg-primary mb-4">
+        <div className="container-fluid">
+          <span className="navbar-brand mb-0 h1">Redux App</span>
+        </div>
+      </nav>
+      <div className="container">
+        <div className="row g-4">
+          <div className="col-md-4">
+            <Counter />
+          </div>
+          <div className="col-md-8">
+            <Todo />
+          </div>
+        </div>
+        <div className="row mt-4">
+          <div className="col-12">
+            <Cart />
+          </div>
+        </div>
+      </div>
     </div>
   )
 };
