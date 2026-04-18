@@ -5,6 +5,7 @@ import Todo from "./components/Todo";
 import Cart from "./components/Cart";
 import CSSConcepts from "./components/CSSConcepts";
 import User from "./components/User";
+import Weather from "./components/Weather";
 import { logout, toggleTheme } from "./redux/action";
 
 function App() {
@@ -37,16 +38,16 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <nav className="navbar navbar-dark bg-primary mb-4">
+    <div className={`App ${color === 'dark' ? 'bg-dark text-light' : 'bg-light'}`} style={{ minHeight: '100vh' }}>
+      <nav className={`navbar ${color === 'dark' ? 'navbar-dark bg-dark' : 'navbar-light bg-primary'} mb-4`}>
         <div className="container-fluid">
           <span className="navbar-brand mb-0 h1">Redux App</span>
           <div>
             {isLoggedIn && (
-              <span className="navbar-text cursor-pointer" onClick={handleLogout}>Logout</span>
+              <span className="navbar-text me-3 cursor-pointer" onClick={handleLogout} style={{ cursor: 'pointer' }}>Logout</span>
             )}
-            <span className="navbar-text cursor-pointer" onClick={handleThemeToggle}>
-              {color === "light" ? "Dark Mode" : "Light Mode"}
+            <span className="navbar-text cursor-pointer" onClick={handleThemeToggle} style={{ cursor: 'pointer' }}>
+              {color === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
             </span>
           </div>
         </div>
@@ -62,8 +63,11 @@ function App() {
             </div>
           </div>
           <div className="row mt-4">
-            <div className="col-12">
+            <div className="col-md-6">
               <Cart />
+            </div>
+            <div className="col-md-6">
+              <Weather />
             </div>
           </div>
           <div className="row mt-4">
