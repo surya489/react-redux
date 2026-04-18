@@ -5,11 +5,12 @@ import Todo from "./components/Todo";
 import Cart from "./components/Cart";
 import CSSConcepts from "./components/CSSConcepts";
 import User from "./components/User";
-import { logout } from "./redux/action";
+import { logout, toggleTheme } from "./redux/action";
 
 function App() {
 
   const user = useSelector(state => state.user);
+  const color = useSelector(state => state.color);
   const dispatch = useDispatch();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,6 +22,15 @@ function App() {
     }
   }, [user]);
 
+  useEffect(() => {
+    console.log("color state updated:", color);
+  }, [color]);
+
+  const handleThemeToggle = () => {
+    const newColor = color === "light" ? "dark" : "light";
+    dispatch(toggleTheme(newColor));
+  };
+
   const handleLogout = () => {
     dispatch(logout());
     setIsLoggedIn(false);
@@ -31,9 +41,14 @@ function App() {
       <nav className="navbar navbar-dark bg-primary mb-4">
         <div className="container-fluid">
           <span className="navbar-brand mb-0 h1">Redux App</span>
-          {isLoggedIn && (
-            <span className="navbar-text cursor-pointer" onClick={handleLogout}>Logout</span>
-          )}
+          <div>
+            {isLoggedIn && (
+              <span className="navbar-text cursor-pointer" onClick={handleLogout}>Logout</span>
+            )}
+            <span className="navbar-text cursor-pointer" onClick={handleThemeToggle}>
+              {color === "light" ? "Dark Mode" : "Light Mode"}
+            </span>
+          </div>
         </div>
       </nav>
       {isLoggedIn ? (

@@ -28,3 +28,7 @@ export const FETCH_PRODUCTS_FAILURE = "FETCH_PRODUCTS_FAILURE";
 // export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
+
+// Theme Switcher
+
+export const TOGGLE_THEME = "TOGGLE_THEME";

@@ -13,7 +13,8 @@ import {
     FETCH_PRODUCTS_SUCCESS, 
     FETCH_PRODUCTS_FAILURE, 
     LOGIN, 
-    LOGOUT 
+    LOGOUT,
+    TOGGLE_THEME
 } from "./actionTypes";
 
 const initialState = {
@@ -23,7 +24,8 @@ const initialState = {
     products: [],
     loading: false,
     error: null,
-    user: []
+    user: [],
+    color: "light"
 };
 
 const counterReducer = (state = initialState, action) => {
@@ -120,6 +122,11 @@ const counterReducer = (state = initialState, action) => {
                 ...state,
                 user: []
             };
+        case TOGGLE_THEME:
+            return {
+                ...state,
+                color: action.payload.color
+            }
         default:
             return state;
     }

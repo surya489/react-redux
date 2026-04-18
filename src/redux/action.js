@@ -13,7 +13,8 @@ import {
     FETCH_PRODUCTS_SUCCESS, 
     FETCH_PRODUCTS_FAILURE,
     LOGIN,
-    LOGOUT
+    LOGOUT,
+    TOGGLE_THEME
 } from "./actionTypes";
 
 export const increment = () => ({
@@ -97,4 +98,9 @@ export const login = (user) => ({
 
 export const logout = () => ({
     type: LOGOUT
+});
+
+export const toggleTheme = (color) => ({
+    type: TOGGLE_THEME,
+    payload: { color }
 });
